@@ -24,7 +24,7 @@ router.get("/add-product", (req, res) => {
 });
 
 // Handle Add Product Form Submission
-router.post("/products", async (req, res) => {
+router.post("/product", async (req, res) => {
     const { name, brand, price, category, stock } = req.body;
     try {
         await Product.create({ name, brand, price, category, stock });
@@ -47,7 +47,7 @@ router.get("/edit/:id", async (req, res) => {
 });
 
 // Handle Edit Product Form Submission
-router.put("/products/:id", async (req, res) => {
+router.put("/product/:id", async (req, res) => {
     const { name, brand, price, category, stock } = req.body;
     try {
         await Product.findByIdAndUpdate(req.params.id, { name, brand, price, category, stock });
@@ -59,7 +59,7 @@ router.put("/products/:id", async (req, res) => {
 });
 
 // Handle Delete Product
-router.delete("/products/:id", async (req, res) => {
+router.delete("/product/:id", async (req, res) => {
     try {
         await Product.findByIdAndDelete(req.params.id);
         res.redirect("/products");

@@ -13,7 +13,7 @@ app.use(express.static(path.join(__dirname ,'public')));
 app.set("view engine","ejs");
 
 //connect to mongoose
-mongoose.connect('mongodb://localhost:27017/beautyB');
+mongoose.connect('mongodb://localhost:27017/beautydB');
 
 app.use('/',productRoutes);
     
