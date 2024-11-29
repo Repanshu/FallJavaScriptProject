@@ -11,11 +11,11 @@
         <h1 class="text-2xl font-bold text-gray-800">Edit Product</h1>
         <nav class="mt-2">
             <a href="/" class="text-blue-600 hover:text-blue-800 mr-4">Home</a>
-            <a href="/products" class="text-blue-600 hover:text-blue-800">View Products</a>
+            <a href="/product" class="text-blue-600 hover:text-blue-800">View Products</a>
         </nav>
     </header>
     <main class="mt-8 p-4 max-w-3xl mx-auto bg-white rounded-lg shadow-md">
-        <form action="/products/<%= product._id %>?_method=PUT" method="POST" class="space-y-6">
+        <form action="/product/<%= product._id %>?_method=PUT" method="POST" class="space-y-6">
             <div>
                 <label for="name" class="block text-sm font-medium text-gray-700">Name:</label>
                 <input type="text" id="name" name="name" value="<%= product.name %>" required
