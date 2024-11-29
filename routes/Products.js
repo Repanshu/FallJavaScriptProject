@@ -36,7 +36,7 @@ router.post("/products", async (req, res) => {
 });
 
 // Edit Product Page
-router.get("/edit-product/:id", async (req, res) => {
+router.get("/edit/:id", async (req, res) => {
     try {
         const product = await Product.findById(req.params.id);
         res.render("edit-product", { product });
