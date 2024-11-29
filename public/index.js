@@ -7,3 +7,5 @@ form.addEventListener('submit', (event) => {
         alert('Please fill all fields correctly!');
     }
 });
+
+// Trying to fix github
