@@ -4,7 +4,7 @@ const Product = require("../models/Product");
 
 // Home Page
 router.get("/", (req, res) => {
-    res.render("login");
+    res.render("index");
 });
 
 // Products Listing Page
@@ -24,11 +24,11 @@ router.get("/add-product", (req, res) => {
 });
 
 // Handle Add Product Form Submission
-router.post("/products", async (req, res) => {
+router.post("/product", async (req, res) => {
     const { name, brand, price, category, stock } = req.body;
     try {
         await Product.create({ name, brand, price, category, stock });
-        res.redirect("/products");
+        res.redirect("/product");
     } catch (err) {
         console.error(err);
         res.status(500).send("Error adding product");
@@ -36,10 +36,10 @@ router.post("/products", async (req, res) => {
 });
 
 // Edit Product Page
-router.get("/edit/:id", async (req, res) => {
+router.get("/edit", async (req, res) => {
     try {
         const product = await Product.findById(req.params.id);
-        res.render("edit-product", { product });
+        res.render("edit", { product });
     } catch (err) {
         console.error(err);
         res.status(500).send("Error retrieving product");
@@ -47,7 +47,7 @@ router.get("/edit/:id", async (req, res) => {
 });
 
 // Handle Edit Product Form Submission
-router.put("/products/:id", async (req, res) => {
+router.put("/product/:id", async (req, res) => {
     const { name, brand, price, category, stock } = req.body;
     try {
         await Product.findByIdAndUpdate(req.params.id, { name, brand, price, category, stock });
@@ -59,7 +59,7 @@ router.put("/products/:id", async (req, res) => {
 });
 
 // Handle Delete Product
-router.delete("/products/:id", async (req, res) => {
+router.delete("/product/:id", async (req, res) => {
     try {
         await Product.findByIdAndDelete(req.params.id);
         res.redirect("/products");

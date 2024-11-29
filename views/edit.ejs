@@ -4,39 +4,47 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Edit Product</title>
-    <link rel="stylesheet" href="/public/styles.css">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@3.3.0/dist/tailwind.min.css" rel="stylesheet">
 </head>
-<body>
-    <header>
-        <h1>Edit Product</h1>
-        <nav>
-        <a href="/">Home</a>
-        <a href="/products">View Products</a>
+<body class="bg-gray-100 font-sans">
+    <header class="bg-white shadow-md p-4">
+        <h1 class="text-2xl font-bold text-gray-800">Edit Product</h1>
+        <nav class="mt-2">
+            <a href="/" class="text-blue-600 hover:text-blue-800 mr-4">Home</a>
+            <a href="/product" class="text-blue-600 hover:text-blue-800">View Products</a>
         </nav>
     </header>
-    <main>
-        <form action="/products/<%= product._id %>?_method=PUT" method="POST">
-        <div>
-            <label for="name">Name:</label>
-            <input type="text" id="name" name="name" value="<%= product.name %>" required>
-        </div>
-        <div>
-            <label for="brand">Brand:</label>
-            <input type="text" id="brand" name="brand" value="<%= product.brand %>" required>
-        </div>
-        <div>
-            <label for="price">Price:</label>
-            <input type="number" id="price" name="price" step="0.01" value="<%= product.price %>" required>
-        </div>
-        <div>
-            <label for="category">Category:</label>
-            <input type="text" id="category" name="category" value="<%= product.category %>" required>
-        </div>
-        <div>
-            <label for="stock">Stock:</label>
-            <input type="number" id="stock" name="stock" value="<%= product.stock %>" required>
-        </div>
-        <button type="submit">Update Product</button>
+    <main class="mt-8 p-4 max-w-3xl mx-auto bg-white rounded-lg shadow-md">
+        <form action="/product/<%= product._id %>?_method=PUT" method="POST" class="space-y-6">
+            <div>
+                <label for="name" class="block text-sm font-medium text-gray-700">Name:</label>
+                <input type="text" id="name" name="name" value="<%= product.name %>" required
+                    class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500">
+            </div>
+            <div>
+                <label for="brand" class="block text-sm font-medium text-gray-700">Brand:</label>
+                <input type="text" id="brand" name="brand" value="<%= product.brand %>" required
+                    class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500">
+            </div>
+            <div>
+                <label for="price" class="block text-sm font-medium text-gray-700">Price:</label>
+                <input type="number" id="price" name="price" step="0.01" value="<%= product.price %>" required
+                    class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500">
+            </div>
+            <div>
+                <label for="category" class="block text-sm font-medium text-gray-700">Category:</label>
+                <input type="text" id="category" name="category" value="<%= product.category %>" required
+                    class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500">
+            </div>
+            <div>
+                <label for="stock" class="block text-sm font-medium text-gray-700">Stock:</label>
+                <input type="number" id="stock" name="stock" value="<%= product.stock %>" required
+                    class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500">
+            </div>
+            <button type="submit"
+                class="w-full bg-blue-600 text-white py-2 px-4 rounded-md shadow hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                Update Product
+            </button>
         </form>
     </main>
 </body>

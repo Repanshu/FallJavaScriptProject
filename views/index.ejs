@@ -3,41 +3,48 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Beauty & Skincare</title>
-    <!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login Page</title>
-    <link rel="stylesheet" href="/styles.css">
-    </head>
-    <body>
-    <div class="login-container">
-        <h1>Login</h1>
-        <form action="/login" method="POST">
-        <div class="input-group">
-            <label for="email">Email</label>
-            <input type="email" id="email" name="email" required>
-        </div>
-        <div class="input-group">
-            <label for="password">Password</label>
-            <input type="password" id="password" name="password" required>
-        </div>
-        <button type="submit">Login</button>
-        </form>
-    </div>
-    </body>
-    </html>
+    <title>Solde Beauty Skincare</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@3.3.0/dist/tailwind.min.css" rel="stylesheet">
 </head>
-<body>
-    <header>
-        <h1>Welcome to Beauty & Skincare</h1>
-        <p>Your one-stop destination for quality skincare products.</p>
-        <nav>
-        <a href="/products">View Products</a>
-        <a href="/add-product">Add Product</a>
-        </nav>
+<body class="bg-gray-100 font-sans">
+
+    <!-- Header Section -->
+    <header class="bg-gradient-to-r from-pink-500 to-purple-500 text-white p-6 shadow-md">
+        <div class="container mx-auto text-center">
+            <h1 class="text-4xl font-bold">Welcome to Solde Beauty Skincare</h1>
+            <p class="mt-2 text-lg">Your one-stop destination for quality skincare products.</p>
+            <nav class="mt-4">
+                <a href="/products" class="text-white bg-purple-600 hover:bg-purple-700 px-4 py-2 rounded-lg shadow-md mr-4">
+                    View Products
+                </a>
+                <a href="/add-product" class="text-white bg-pink-600 hover:bg-pink-700 px-4 py-2 rounded-lg shadow-md">
+                    Add Product
+                </a>
+            </nav>
+        </div>
     </header>
+
+    <!-- Login Section -->
+    <main class="flex justify-center items-center min-h-screen">
+        <div class="bg-white p-8 rounded-lg shadow-lg w-full max-w-md">
+            <h2 class="text-2xl font-semibold text-center text-gray-800 mb-6">Login</h2>
+            <form action="/login" method="POST" class="space-y-4">
+                <div>
+                    <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
+                    <input type="email" id="email" name="email" required
+                        class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-pink-500 focus:border-pink-500">
+                </div>
+                <div>
+                    <label for="password" class="block text-sm font-medium text-gray-700">Password</label>
+                    <input type="password" id="password" name="password" required
+                        class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-pink-500 focus:border-pink-500">
+                </div>
+                <button type="submit"
+                    class="w-full bg-pink-600 text-white py-2 px-4 rounded-md shadow hover:bg-pink-700 focus:outline-none focus:ring-2 focus:ring-pink-500 focus:ring-offset-2">
+                    Login
+                </button>
+            </form>
+        </div>
+    </main>
 </body>
 </html>
