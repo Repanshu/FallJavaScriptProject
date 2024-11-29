@@ -2,6 +2,7 @@ const express= require('express');
 const mongoose= require('mongoose');
 const path= require('path')
 const productRoutes= require("./routes/Products")
+const productModel= require("./models/Product")
 
 const app= express();
 //middlewares

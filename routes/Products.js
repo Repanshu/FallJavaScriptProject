@@ -11,7 +11,7 @@ router.get("/", (req, res) => {
 router.get("/product", async (req, res) => {
     try {
         const products = await Product.find(); // Fetch all products from MongoDB
-        res.render("products", { products });
+        res.render("product", { products });
     } catch (err) {
         console.error(err);
         res.status(500).send("Server Error");
