@@ -30,8 +30,8 @@ exports.getAllProducts = async (req, res) => {
     exports.updateProduct = async (req, res) => {
     try {
         const updatedProduct = await Product.findByIdAndUpdate(
-        req.params.id, 
-        req.body, 
+        req.params.id,
+        req.body,
         { new: true }
         );
         res.json(updatedProduct);

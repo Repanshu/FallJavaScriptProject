@@ -1,10 +1,21 @@
 const express = require("express");
 const router = express.Router();
 const Product = require("../models/Product");
+const User= require("./models/User");
 
 // Home Page
 router.get("/", (req, res) => {
     res.render("index");
+});
+const users=[];
+
+router.post('/index',(req,res)=>{
+    const{name,age,city,email,username,password}=req.body;
+
+    const newUser={name,age,city,email,username,password};
+    users.push(newUser);
+
+    res.redirect('/product')
 });
 
 // Products Listing Page
@@ -36,9 +47,12 @@ router.post("/product", async (req, res) => {
 });
 
 // Edit Product Page
-router.get("/edit", async (req, res) => {
+router.get("/edit/:id", async (req, res) => {
     try {
-        const product = await Product.findById(req.params.id);
+        const product = await Product.findById(req.params.id); // Fetch the product by ID
+        if (!product) {
+            return res.status(404).send("Product not found");
+        }
         res.render("edit", { product });
     } catch (err) {
         console.error(err);
@@ -46,23 +60,31 @@ router.get("/edit", async (req, res) => {
     }
 });
 
-// Handle Edit Product Form Submission
-router.put("/product/:id", async (req, res) => {
-    const { name, brand, price, category, stock } = req.body;
+// Update product
+router.post('/edit/:id', async (req, res) => {
+    const { id } = req.params;
+    const { name, brand, price, category, image } = req.body;
+
     try {
-        await Product.findByIdAndUpdate(req.params.id, { name, brand, price, category, stock });
-        res.redirect("/products");
+        // Find and update the product
+        await Product.findByIdAndUpdate(id, { name, brand, price, category, image });
+
+        // Redirect to the products page
+        res.redirect('/product');
     } catch (err) {
-        console.error(err);
-        res.status(500).send("Error updating product");
+        console.error('Error updating product:', err);
+        res.status(500).send('Internal Server Error');
     }
 });
 
 // Handle Delete Product
-router.delete("/product/:id", async (req, res) => {
+router.post("/delete/:id", async (req, res) => {
     try {
-        await Product.findByIdAndDelete(req.params.id);
-        res.redirect("/products");
+        const deletedProduct = await Product.findByIdAndDelete(req.params.id); // Delete product by ID
+        if (!deletedProduct) {
+            return res.status(404).send("Product not found");
+        }
+        res.redirect("/product");
     } catch (err) {
         console.error(err);
         res.status(500).send("Error deleting product");

@@ -4,48 +4,71 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Edit Product</title>
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@3.3.0/dist/tailwind.min.css" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-gray-100 font-sans">
-    <header class="bg-white shadow-md p-4">
-        <h1 class="text-2xl font-bold text-gray-800">Edit Product</h1>
-        <nav class="mt-2">
-            <a href="/" class="text-blue-600 hover:text-blue-800 mr-4">Home</a>
-            <a href="/product" class="text-blue-600 hover:text-blue-800">View Products</a>
-        </nav>
+    <!-- Header -->
+    <header class="bg-gradient-to-r from-pink-500 to-purple-500 text-white p-6 shadow-md">
+        <div class="container mx-auto text-center">
+            <h1 class="text-3xl font-bold">Edit Product</h1>
+            <nav class="mt-4">
+                <a href="/" class="text-white bg-purple-600 hover:bg-purple-700 px-4 py-2 rounded-lg shadow-md mr-4">
+                    Home
+                </a>
+                <a href="/product" class="text-white bg-pink-600 hover:bg-pink-700 px-4 py-2 rounded-lg shadow-md">
+                    View Products
+                </a>
+            </nav>
+        </div>
     </header>
-    <main class="mt-8 p-4 max-w-3xl mx-auto bg-white rounded-lg shadow-md">
-        <form action="/product/<%= product._id %>?_method=PUT" method="POST" class="space-y-6">
-            <div>
-                <label for="name" class="block text-sm font-medium text-gray-700">Name:</label>
-                <input type="text" id="name" name="name" value="<%= product.name %>" required
-                    class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500">
-            </div>
-            <div>
-                <label for="brand" class="block text-sm font-medium text-gray-700">Brand:</label>
-                <input type="text" id="brand" name="brand" value="<%= product.brand %>" required
-                    class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500">
-            </div>
-            <div>
-                <label for="price" class="block text-sm font-medium text-gray-700">Price:</label>
-                <input type="number" id="price" name="price" step="0.01" value="<%= product.price %>" required
-                    class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500">
-            </div>
-            <div>
-                <label for="category" class="block text-sm font-medium text-gray-700">Category:</label>
-                <input type="text" id="category" name="category" value="<%= product.category %>" required
-                    class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500">
-            </div>
-            <div>
-                <label for="stock" class="block text-sm font-medium text-gray-700">Stock:</label>
-                <input type="number" id="stock" name="stock" value="<%= product.stock %>" required
-                    class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500">
-            </div>
-            <button type="submit"
-                class="w-full bg-blue-600 text-white py-2 px-4 rounded-md shadow hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500">
-                Update Product
-            </button>
-        </form>
+
+    <!-- Main Section -->
+    <main class="container mx-auto mt-8">
+        <div class="bg-white p-6 rounded-lg shadow-md">
+            <h2 class="text-2xl font-semibold text-gray-800 mb-6">Update Product Details</h2>
+            <form action="/edit/<%= product._id %>?_method=POST" method="POST" class="space-y-6">
+                <!-- Name -->
+                <div>
+                    <label for="name" class="block text-sm font-medium text-gray-700">Product Name:</label>
+                    <input type="text" id="name" name="name" value="<%= product.name %>" required
+                        class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-pink-500 focus:border-pink-500">
+                </div>
+
+                <!-- Brand -->
+                <div>
+                    <label for="brand" class="block text-sm font-medium text-gray-700">Brand:</label>
+                    <input type="text" id="brand" name="brand" value="<%= product.brand %>" required
+                        class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-pink-500 focus:border-pink-500">
+                </div>
+
+                <!-- Price -->
+                <div>
+                    <label for="price" class="block text-sm font-medium text-gray-700">Price ($):</label>
+                    <input type="number" id="price" name="price" step="0.01" value="<%= product.price %>" required
+                        class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-pink-500 focus:border-pink-500">
+                </div>
+
+                <!-- Category -->
+                <div>
+                    <label for="category" class="block text-sm font-medium text-gray-700">Category:</label>
+                    <input type="text" id="category" name="category" value="<%= product.category %>" required
+                        class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-pink-500 focus:border-pink-500">
+                </div>
+
+                <!-- Image URL -->
+                <div>
+                    <label for="image" class="block text-sm font-medium text-gray-700">Image URL:</label>
+                    <input type="url" id="image" name="image" value="<%= product.image || '' %>"
+                        class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-pink-500 focus:border-pink-500">
+                </div>
+
+                <!-- Submit Button -->
+                <button type="submit"
+                    class="w-full bg-pink-600 text-white py-2 px-4 rounded-lg shadow hover:bg-pink-700 focus:outline-none focus:ring-2 focus:ring-pink-500">
+                    Update Product
+                </button>
+            </form>
+        </div>
     </main>
 </body>
 </html>
