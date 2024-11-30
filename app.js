@@ -1,7 +1,8 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const path = require('path');
-const productRoutes = require('./routes/Products'); // Import product routes
+const productRoutes = require('./routes/Products');
+// Import product routes
 
 const app = express();
 
@@ -14,18 +15,14 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.set('view engine', 'ejs');
 
 // MongoDB connection with proper error handling
-const DB_URI = 'mongodb://127.0.0.1:27017/beautyB';
-mongoose
-    .connect(DB_URI, { useNewUrlParser: true, useUnifiedTopology: true })
+mongoose.connect('mongodb://localhost:27017/beautyDB', { useNewUrlParser: true, useUnifiedTopology: true })
     .then(() => {
-        console.log('Connected to MongoDB successfully.');
+        console.log('Connected to MongoDB');
     })
-    .catch((error) => {
-        console.error('Error connecting to MongoDB:', error.message);
-        process.exit(1); // Exit the application if the connection fails
+    .catch((err) => {
+        console.error('Error connecting to MongoDB', err);
     });
 
-<<<<<<< HEAD
 // Routing setup
 app.use('/', productRoutes); // Mount product routes on the root path
 
@@ -41,12 +38,3 @@ const PORT = 3000; // Use environment variable for PORT or default to 3000
 app.listen(PORT, () => {
     console.log(`Server running on http://localhost:${PORT}`);
 });
-=======
-app.use('/',productRoutes);
-    
-    // Start the server
-app.listen(3000, () => {
-        console.log('Server running on port 3000')});
-
-//himanshuu
->>>>>>> d66341d544659a9fb4769f1d42ead85dfd369b46

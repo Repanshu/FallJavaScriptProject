@@ -1,21 +1,45 @@
 const express = require("express");
 const router = express.Router();
 const Product = require("../models/Product");
-const User= require("./models/User");
+const User = require("../models/User");
 
 // Home Page
 router.get("/", (req, res) => {
     res.render("index");
 });
-const users=[];
+router.get("/view-product", async (req, res) => {
+    try {
+        const products = await Product.find(); // Fetch all products from MongoDB
+        res.render("view-product", { products }); // Render the view-products EJS page
+    } catch (err) {
+        console.error(err);
+        res.status(500).send("Server Error");
+    }
+});
 
-router.post('/index',(req,res)=>{
-    const{name,age,city,email,username,password}=req.body;
+// Sign-Up Route
+router.post('/index', async (req, res) => {
+    const { name, age, city, email, username, password } = req.body;
 
-    const newUser={name,age,city,email,username,password};
-    users.push(newUser);
+    try {
+        // Create new user (no hashing)
+        const newUser = new User({
+            name,
+            age,
+            city,
+            email,
+            username,
+            password // Store password as plain text (not recommended in real applications)
+        });
 
-    res.redirect('/product')
+        // Save the user to the database
+        await newUser.save();
+
+        res.redirect('/product');
+    } catch (error) {
+        console.error("Error during signup:", error);
+        res.status(500).send("Error signing up user");
+    }
 });
 
 // Products Listing Page
@@ -35,10 +59,10 @@ router.get("/add-product", (req, res) => {
 });
 
 // Handle Add Product Form Submission
-router.post("/product", async (req, res) => {
-    const { name, brand, price, category, stock } = req.body;
+router.post("/add-product", async (req, res) => {
+    const { name, brand, price, category, image } = req.body;
     try {
-        await Product.create({ name, brand, price, category, stock });
+        await Product.create({ name, brand, price, category, image });
         res.redirect("/product");
     } catch (err) {
         console.error(err);
@@ -60,14 +84,14 @@ router.get("/edit/:id", async (req, res) => {
     }
 });
 
-// Update product
+// Update Product
 router.post('/edit/:id', async (req, res) => {
     const { id } = req.params;
-    const { name, brand, price, category, image } = req.body;
+    const { name, brand, price, category, stock, image } = req.body;
 
     try {
         // Find and update the product
-        await Product.findByIdAndUpdate(id, { name, brand, price, category, image });
+        const updatedProduct = await Product.findByIdAndUpdate(id, { name, brand, price, category, stock, image }, { new: true });
 
         // Redirect to the products page
         res.redirect('/product');
