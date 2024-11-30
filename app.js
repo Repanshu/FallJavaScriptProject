@@ -25,6 +25,7 @@ mongoose
         process.exit(1); // Exit the application if the connection fails
     });
 
+<<<<<<< HEAD
 // Routing setup
 app.use('/', productRoutes); // Mount product routes on the root path
 
@@ -40,3 +41,12 @@ const PORT = 3000; // Use environment variable for PORT or default to 3000
 app.listen(PORT, () => {
     console.log(`Server running on http://localhost:${PORT}`);
 });
+=======
+app.use('/',productRoutes);
+    
+    // Start the server
+app.listen(3000, () => {
+        console.log('Server running on port 3000')});
+
+//himanshuu
+>>>>>>> d66341d544659a9fb4769f1d42ead85dfd369b46
